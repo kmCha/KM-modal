@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>KM-modal</title>
+	<link rel="stylesheet" type="text/css" href="src/css/KM-modal.css">
+</head>
+<body>
+	<div id="modal1" class="modal-wrap">
+		<div class="modal-content">
+			<div class="modal-header">modal-1</div>
+			<div class="modal-body">
+				<input type="text" value="lalala">
+				<input type="text" value="lalala">
+			</div>
+			<div class="modal-footer">
+				<button>确定</button>
+				<button data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+	<div id="modal2" class="modal-wrap">
+		<div class="modal-content">
+			<div class="modal-header">modal-2</div>
+			<div class="modal-body">
+				<input type="text" value="lalala">
+				<input type="text" value="lalala">
+			</div>
+			<div class="modal-footer">
+				<button>确定</button>
+				<button data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+	<div id="modal3" class="modal-wrap">
+		<div class="modal-content">
+			<div class="modal-header">modal3</div>
+			<div class="modal-body">
+				<input type="text" value="lalala">
+				<input type="text" value="lalala">
+			</div>
+			<div class="modal-footer">
+				<button>确定</button>
+				<button data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+	<button data-toggle="modal" data-target="modal1">toggle modal1</button>
+	<button data-toggle="modal" data-target="modal2">toggle modal2</button>
+	<button data-toggle="modal" data-target="modal3">toggle modal3</button>
+	<script type="text/javascript" src="src/javascript/KM-modal.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var modal = new Modal();
+			modal.init();
+		};
+	</script>
+</body>
+</html>
