@@ -4,6 +4,12 @@
 	<meta charset="UTF-8">
 	<title>KM-modal</title>
 	<link rel="stylesheet" type="text/css" href="src/css/KM-modal.css">
+	<style type="text/css">
+	.superbig {
+		height: 1000px;
+		width: 200px;
+	}
+	</style>
 </head>
 <body>
 	<div id="modal1" class="modal-wrap">
@@ -34,10 +40,11 @@
 	</div>
 	<div id="modal3" class="modal-wrap">
 		<div class="modal-content">
-			<div class="modal-header">modal3</div>
+			<div class="modal-header">modal-3</div>
 			<div class="modal-body">
 				<input type="text" value="lalala">
 				<input type="text" value="lalala">
+				<div class="superbig"></div>
 			</div>
 			<div class="modal-footer">
 				<button>确定</button>
@@ -45,13 +52,13 @@
 			</div>
 		</div>
 	</div>
-	<button data-toggle="modal" data-target="modal1">toggle modal1</button>
-	<button data-toggle="modal" data-target="modal2">toggle modal2</button>
-	<button data-toggle="modal" data-target="modal3">toggle modal3</button>
+	<button data-toggle="modal" data-target="modal1">modal1</button>
+	<button data-toggle="modal" data-target="modal2">modal2</button>
+	<button data-toggle="modal" data-target="modal3">modal3(超大)</button>
 	<script type="text/javascript" src="src/javascript/KM-modal.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {
-			var modal = new Modal();
+			var modal = new Modal({close: true});
 			modal.init();
 		};
 	</script>

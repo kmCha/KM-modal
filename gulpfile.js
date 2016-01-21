@@ -3,6 +3,7 @@ var less = require('gulp-less'),
 	path = require('path'),
     uglify = require('gulp-uglify'),
 	del = require('del'),
+    livereload = require('gulp-livereload'),
 	autoprefixer = require('gulp-autoprefixer'),
 	rename = require('gulp-rename'),
 	minifyCSS = require('gulp-minify-css');
@@ -13,7 +14,7 @@ gulp.task('less', ['clean-less'], function() {
 			paths: ['src/less/']
 		}))
 		.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(gulp.dest('dist/css/'))
+		.pipe(gulp.dest('src/css/'))
 		.pipe(rename({
 			suffix: '.min'
 		}))
@@ -21,7 +22,7 @@ gulp.task('less', ['clean-less'], function() {
 		.pipe(gulp.dest('dist/css/'));
 });
 gulp.task('clean-less', function() {
-	return del('dist/css/*.css');
+	return del(['dist/css/*.css', 'src/css/*.css']);
 });
 
 gulp.task('scripts', ['clean-scripts'], function() {
@@ -41,4 +42,7 @@ gulp.task('watch', function() {
   gulp.watch('src/less/*.less', ['less']);
   // Watch .js files
   gulp.watch('src/javascript/*.js', ['scripts']);
+  livereload.listen();
+  // Watch any files in dist/, reload on change
+  gulp.watch(['src/less/', 'src/javascript/']).on('change', livereload.changed);
 });
