@@ -12,6 +12,12 @@ Modal.prototype.init = function() {
 		var crosses = _addCrossToHeader();
 		_bindCancelHandler(crosses);
 	}
+	if(conf && conf.animation) {
+		_addAnimationToContent();
+	}
+	if(conf && conf.shadowClose) {
+		_bindShadowClick();
+	}
 	_bindEscHandler();
 	_bindCancelHandler(cancels);
 	_bindOpenHandler(buttons);
@@ -22,22 +28,8 @@ var _createShadow = (function() {	// 返回一个shadow单例
 		init = function() {	// 第一次创建shadow元素
 			_shadow = document.createElement("div");
 			_shadow.classList.add("modal-shadow");
-			bindClick();
 			bindResize();
 			return _shadow;
-		},
-		bindClick = function() {
-			_shadow.onclick = function(event) {	// 绑定点击关闭模态框的事件处理程序
-				if(event.target !== this) {
-					return;
-				}
-				var content = this.firstElementChild,
-					wrap = this.parentElement;
-				this.removeChild(content);
-				wrap.removeChild(this);
-				wrap.appendChild(content);
-				wrap.classList.toggle("modal-show");
-			};
 		},
 		bindResize = function() {
 			var timer;
@@ -59,6 +51,31 @@ var _createShadow = (function() {	// 返回一个shadow单例
 	};
 })();
 
+
+function _bindShadowClick() {
+	_createShadow().onclick = function(event) {	// 绑定点击关闭模态框的事件处理程序
+		if(event.target !== this) {
+			return;
+		}
+		var shadow = this,
+			content = shadow.querySelector(".modal-content"),
+			modal = shadow.parentElement;
+
+		_dismissModal(modal, shadow, content);
+	};
+}
+
+function _addAnimationToContent() {
+	var contents = document.querySelectorAll(".modal-content"),
+		i;
+
+	for(i = contents.length - 1; i >=0; i--) {
+		(function(i) {
+			contents[i].classList.add("animation");
+		})(i);
+	}
+}
+
 function _openModal(modal, shadow, content) {
 	modal.removeChild(content);
 	shadow.appendChild(content);	// 在modal-wrap和modal-content之间插入modal-shadow
@@ -75,14 +92,15 @@ function _dismissModal(modal, shadow, content) {
 
 function _addCrossToHeader() {
 	var link = document.createElement("link"),
-		headers = document.querySelectorAll(".modal-header");
+		headers = document.querySelectorAll(".modal-header"),
+		i;
 
 	// 加载font-awesome库
 	link.rel = "stylesheet";
 	link.href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
 	document.head.appendChild(link);
 
-	for(var i = headers.length - 1; i >= 0; i--) {
+	for(i = headers.length - 1; i >= 0; i--) {
 		(function(i) {
 			var cross = document.createElement("i");
 			cross.classList.add("fa", "fa-times", "modal-header-cross");
@@ -135,8 +153,9 @@ function _bindCancelHandler(cancels) {
 }
 
 function _bindEscHandler() {
-	var contents = document.querySelectorAll(".modal-content");
-	for(var i = contents.length - 1; i >= 0; i--) {
+	var contents = document.querySelectorAll(".modal-content"),
+		i;
+	for(i = contents.length - 1; i >= 0; i--) {
 		contents[i].setAttribute("tabIndex", "1");
 		contents[i].onkeydown = function(event) {
 			var content = this,
