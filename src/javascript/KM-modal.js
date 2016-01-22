@@ -13,7 +13,8 @@ Modal.prototype.init = function() {
 		_bindCancelHandler(crosses);
 	}
 	if(conf && conf.animation) {
-		_addAnimationToContent();
+		_addOpenAnimationToModal();
+		_addCloseAnimationBeforeDismiss();
 	}
 	if(conf && conf.shadowClose) {
 		_bindShadowClick();
@@ -65,15 +66,33 @@ function _bindShadowClick() {
 	};
 }
 
-function _addAnimationToContent() {
-	var contents = document.querySelectorAll(".modal-content"),
+function _addOpenAnimationToModal() {
+	var modals = document.querySelectorAll(".modal-wrap"),
 		i;
 
-	for(i = contents.length - 1; i >=0; i--) {
+	for(i = modals.length - 1; i >=0; i--) {
 		(function(i) {
-			contents[i].classList.add("animation");
+			modals[i].classList.add("openAnimation");
 		})(i);
 	}
+}
+
+function _addCloseAnimationBeforeDismiss() {
+	_dismissModal = (function(old) {	// 给关闭模态框函数添加动画功能
+		return function(modal, shadow, content) {
+			var args = arguments,
+				shadowClick = shadow.onclick || null,
+				closeHandler = function(event) {
+					old.apply(this, args);
+					document.body.removeEventListener("animationend", closeHandler);	// 动画结束之后取消绑定在body上的事件处理程序
+					modal.classList.remove("closeAnimation");
+					shadow.onclick = shadowClick;	// 动画结束后还原shadow点击事件
+				};
+			shadow.onclick = null;	// 动画开始后先清空shadow上的点击事件以免重复点击
+			modal.classList.add("closeAnimation");
+			document.body.addEventListener("animationend", closeHandler);	// IE9+
+		};
+	})(_dismissModal);
 }
 
 function _openModal(modal, shadow, content) {
@@ -168,4 +187,19 @@ function _bindEscHandler() {
 			}
 		};
 	}
+}
+
+function _before(old, fn) {
+	return function() {
+		fn.apply(this, arguments);
+		return old.apply(this, arguments);
+	};
+}
+
+function _after(old, fn) {
+	return function() {
+		var ret = old.apply(this, arguments);
+		fn.apply(this, arguments);
+		return ret;
+	};
 }
