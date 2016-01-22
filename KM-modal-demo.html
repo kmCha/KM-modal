@@ -57,7 +57,7 @@
 	<button data-toggle="modal" data-target="modal1">modal1</button>
 	<button data-toggle="modal" data-target="modal2">modal2</button>
 	<button data-toggle="modal" data-target="modal3">modal3(超大)</button>
-	<script type="text/javascript" src="dist/javascript/KM-modal.min.js"></script>
+	<script type="text/javascript" src="src/javascript/KM-modal.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {
 			var modal = new Modal({
@@ -65,6 +65,8 @@
 				animation: true,
 				shadowClose: true
 			});
+			modal.init();
+			modal.init();
 			modal.init();
 		};
 	</script>

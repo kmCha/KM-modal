@@ -4,25 +4,44 @@ var Modal = function(conf) {
 	this.conf = conf;	// 配置信息对象
 };
 Modal.prototype.init = function() {
-	var buttons = this.buttons,
-		cancels = this.cancels,
-		conf = this.conf;
+	var count = 0;
 
-	if(conf && conf.close) {
-		var crosses = _addCrossToHeader();
-		_bindCancelHandler(crosses);
-	}
-	if(conf && conf.animation) {
-		_addOpenAnimationToModal();
-		_addCloseAnimationBeforeDismiss();
-	}
-	if(conf && conf.shadowClose) {
-		_bindShadowClick();
-	}
-	_bindEscHandler();
-	_bindCancelHandler(cancels);
-	_bindOpenHandler(buttons);
-};
+	return function() {
+		var _self = this,
+			actualInit = function() {
+				var buttons = _self.buttons,
+					cancels = _self.cancels,
+					conf = _self.conf;
+
+				if(conf && conf.close) {
+					var crosses = _addCrossToHeader();
+					_bindCancelHandler(crosses);
+				}
+				if(conf && conf.animation) {
+					_addOpenAnimationToModal();
+					_addCloseAnimationBeforeDismiss();
+				}
+				if(conf && conf.shadowClose) {
+					_bindShadowClick();
+				}
+				_bindEscHandler();
+				_bindCancelHandler(cancels);
+				_bindOpenHandler(buttons);
+
+				count++;
+			},
+			emptyFn = function() {
+				console.log("init函数只能执行一次，不然会出错");
+			};
+
+
+		if(count === 0) {
+			return actualInit();
+		}
+		return emptyFn();
+	};
+}();
+
 
 var _createShadow = (function() {	// 返回一个shadow单例
 	var _shadow = null,	// 缓存shadow元素
