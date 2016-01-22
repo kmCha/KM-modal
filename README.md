@@ -5,10 +5,10 @@
 # 使用方法
 
 首先在html文件中加载`css`和`js`文件：
-
-	<link rel="stylesheet" type="text/css" href="dist/css/KM-modal.min.css">
-	<script type="text/javascript" src="dist/javascript/KM-modal.min.js"></script>
-
+```html
+<link rel="stylesheet" type="text/css" href="dist/css/KM-modal.min.css">
+<script type="text/javascript" src="dist/javascript/KM-modal.min.js"></script>
+```
 然后以下列**格式**书写模态框标签：
 
 	<div id="modal1" class="modal-wrap">	// 模态框组件
