@@ -71,13 +71,15 @@
 	<script type="text/javascript">
 		window.onload = function() {
 			var modal = new Modal({
-				close: true,
-				animation: true,
-				shadowClose: true
+				animation: false
 			});
+			var modal2 = new Modal();
 			modal.init();
+			modal2.init();
 			modal.init();
-			modal.init();
+			setTimeout(function(){
+				modal.open("modal1");
+			}, 2000);
 		};
 	</script>
 </body>

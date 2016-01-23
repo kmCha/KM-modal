@@ -1,6 +1,6 @@
 # KM-modal（模态框插件）
 
-轻量级自适应居中模态框，无任何依赖库，使用简单，[demo](http://45.33.80.77:3000/#/demos/km-modal)
+轻量级自适应居中模态框，无任何依赖库，使用简单，[demo](http://assignmentrecorder.com/demos/km-modal)
 
 # 使用方法
 
@@ -50,14 +50,21 @@ window.onload = function() {
 	modal.init();	// 初始化模态框
 };
 ```
+除了写`html`按钮来打开模态框之外，还可以用javascript来打开模态框：
+```javascript
+	modal.open(id);
+```
+只需传入模态框也就是`.modal-wrap`类元素的`id`字符串进入`modal`实例的`open()`方法即可打开指定的模态框。
+**注意**，页面中只能有一个模态框打开，如果在有模态框是打开的情况下调用`open()`方法，将不会有任何反应，为了照顾不喜欢看文档的同学，我在代码中的这个情况下在`console`中输出了错误信息。
+
 ## 支持的配置
 
-在创建`modal`实例的时候传入配置对象：
+在创建`modal`实例的时候，如果不传入任何参数，则是默认模式，默认模式下所有功能都是启用了的，如果想关闭某项功能，可以传入配置对象指定要关闭的功能的值为`false`：
 ```javascript
 var modal = new Modal({
-	close: true,			// 右上角的叉叉
-	animation: true,		// 动画效果
-	shadowClose: true		// 启用点击阴影处关闭模态框功能
+	close: false,			// 隐藏右上角的叉叉
+	animation: fasle,		// 关闭动画效果
+	shadowClose: false		// 关闭点击阴影处关闭模态框功能
 });
 modal.init();
 ```
