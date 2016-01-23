@@ -128,7 +128,7 @@ var Modal = (function(){
 
 		for(i = l - 1; i >=0; i--) {
 			(function(i) {
-				modals[i].classList.add("openAnimation");
+				_modals[i].classList.add("openAnimation");
 			})(i);
 		}
 	}

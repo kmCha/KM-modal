@@ -19,20 +19,22 @@ gulp.task('less', ['clean-less'], function() {
 			suffix: '.min'
 		}))
 		.pipe(minifyCSS())
+		.pipe(gulp.dest('../../Assignment-mean/public/demos/km-modal/'))
 		.pipe(gulp.dest('dist/css/'));
 });
 gulp.task('clean-less', function() {
-	return del(['dist/css/*.css', 'src/css/*.css']);
+	return del(['dist/css/*.css', 'src/css/*.css', '../../Assignment-mean/public/demos/km-modal/*.css'], {force: true});
 });
 
 gulp.task('scripts', ['clean-scripts'], function() {
   return gulp.src('src/javascript/*.js')
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
+    .pipe(gulp.dest('../../Assignment-mean/public/demos/km-modal/'))
     .pipe(gulp.dest('dist/javascript'));
 });
 gulp.task('clean-scripts', function() {
-	return del('dist/javascript/*.js');
+	return del(['dist/javascript/*.js', '../../Assignment-mean/public/demos/km-modal/*.js'], {force: true});
 });
 
 gulp.task('default', ['less', 'scripts']);
