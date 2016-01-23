@@ -17,8 +17,16 @@
 			<h3>modal-1</h3>
 		</div>
 		<div class="modal-body">		// 模态框内容
-			<input type="text" value="lalala">
-			<input type="text" value="lalala">
+			<div class="modal-group">	// 模态框中的输入元素组（同行）
+				文本输入：<input type="text" value="lalala">
+			</div>
+			<div class="modal-group">
+				单选框组：<input type="radio" name="lala">哈哈
+						<input type="radio" name="lala">呵呵
+			</div>
+			<p>这是一个段落但是我真的不知道写些啥所以只能刷屏了：查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥</p>
+			<span>“我是span元素”</span>
+			<span>“这么巧我也是”</span>
 		</div>
 		<div class="modal-footer">		// 模态框footer
 			<button>确定</button>
@@ -27,7 +35,7 @@
 	</div>
 </div>
 ```
-其中需要注意，`id`是**必需**的，他会跟触发他的按钮绑定。其中的取消按钮指定了`data-dismiss="modal"`特性，能够关闭模态框。
+其中需要注意，`id`是**必需**的，他会跟触发他的按钮绑定。其中的取消按钮指定了`data-dismiss="modal"`特性，能够关闭模态框。如果有输入组件，需要将其分组放在`<div class="modal-group"></div>`中，每一组会横竖居中显示在一行。
 
 接下来需要加上一个触发模态框的按钮：
 ```html

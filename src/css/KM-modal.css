@@ -90,7 +90,20 @@
 .modal-body {
   text-align: center;
   margin: 0;
-  padding: 15px;
+  padding: 15px 30px;
+}
+.modal-body .modal-group {
+  width: 100%;
+  margin: 5px auto;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .modal-footer {
   text-align: right;

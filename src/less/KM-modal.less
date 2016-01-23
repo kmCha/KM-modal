@@ -1,16 +1,10 @@
-@blue: #46d4f3;
-@pink: #fe67c3;
 @grey: #7f7f7f;
 @grey-lighter-1: lighten(@grey, 30%);
 @grey-darker-1: darken(@grey, 10%);
 @white: #fff;
-@meatRed: #eb8888;
 @black: #000;
 @black-lighter-1: lighten(@black, 10%);
 @black-lighter-2: lighten(@black, 20%);
-@red: #ff6161;
-@green: #dff0d8;
-@green-darker-5: darken(@green, 50%);
 
 *:focus {
 	outline: none; // 取消浏览器自带的focus蓝边框
@@ -93,7 +87,14 @@
 .modal-body {
 	text-align: center;
 	margin: 0;
-	padding: 15px;
+	padding: 15px 30px;
+	.modal-group {
+		width: 100%;
+		margin: 5px auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 .modal-footer {
 	text-align: right;
