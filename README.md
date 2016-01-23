@@ -18,13 +18,10 @@
 		</div>
 		<div class="modal-body">		// 模态框内容
 			<div class="modal-group">	// 模态框中的输入元素组（同行）
-				文本输入：<input type="text" value="lalala">
+				<label for="input1-1">文本输入：</label>
+				<input id="input1-1" type="text" value="lalala">
 			</div>
-			<div class="modal-group">
-				单选框组：<input type="radio" name="lala">哈哈
-						<input type="radio" name="lala">呵呵
-			</div>
-			<p>这是一个段落但是我真的不知道写些啥所以只能刷屏了：查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥查马纠西是帅哥</p>
+			<p>这是一个段落</p>
 			<span>“我是span元素”</span>
 			<span>“这么巧我也是”</span>
 		</div>
