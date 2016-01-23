@@ -63,7 +63,7 @@ window.onload = function() {
 ```javascript
 var modal = new Modal({
 	close: false,			// 隐藏右上角的叉叉
-	animation: fasle,		// 关闭动画效果
+	animation: false,		// 关闭动画效果
 	shadowClose: false		// 关闭点击阴影处关闭模态框功能
 });
 modal.init();
