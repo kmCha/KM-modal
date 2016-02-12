@@ -127,9 +127,7 @@ var Modal = (function(){
 			l = _modals.length;
 
 		for(i = l - 1; i >=0; i--) {
-			(function(i) {
-				_modals[i].classList.add("openAnimation");
-			})(i);
+			_modals[i].classList.add("openAnimation");
 		}
 	}
 
@@ -176,7 +174,8 @@ var Modal = (function(){
 	function _addCrossToHeader() {
 		var link = document.createElement("link"),
 			headers = document.querySelectorAll(".modal-header"),
-			i;
+			i,
+			cross;
 
 		// 加载font-awesome库
 		link.rel = "stylesheet";
@@ -184,12 +183,10 @@ var Modal = (function(){
 		document.head.appendChild(link);
 
 		for(i = headers.length - 1; i >= 0; i--) {
-			(function(i) {
-				var cross = document.createElement("i");
-				cross.classList.add("fa", "fa-times", "modal-header-cross");
-				// cross.innerHTML = 1;
-				headers[i].appendChild(cross);
-			})(i);
+			cross = document.createElement("i");
+			cross.classList.add("fa", "fa-times", "modal-header-cross");
+			// cross.innerHTML = 1;
+			headers[i].appendChild(cross);
 		}
 		return document.querySelectorAll(".modal-header-cross");
 	}
