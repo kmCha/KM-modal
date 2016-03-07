@@ -14,7 +14,7 @@
   position: relative;
   z-index: 9999;
   background-color: rgba(150, 150, 150, 0.2);
-  overflow: scroll;
+  overflow: auto;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
