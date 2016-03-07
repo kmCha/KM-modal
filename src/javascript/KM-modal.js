@@ -1,5 +1,7 @@
 var Modal = (function(){
-	var _Modal = function(conf) {
+	var _modals = document.querySelectorAll(".modal-wrap");	// 读取页面中所有modal，多处会用到
+
+	function _Modal(conf) {
 		this.buttons = document.querySelectorAll("[data-toggle=modal]");	// 获得所有与modal关联的按钮
 		this.cancels = document.querySelectorAll("[data-dismiss=modal]");	// 获得所有关闭modal的按钮
 		this.conf = conf;	// 配置信息对象
@@ -16,9 +18,7 @@ var Modal = (function(){
 				_bindShadowClick();
 			}
 		};
-	},
-		 _modals = document.querySelectorAll(".modal-wrap");	// 读取页面中所有modal，多处会用到
-
+	}
 	_Modal.prototype.init = function() {
 		var count = 0;
 
@@ -143,8 +143,8 @@ var Modal = (function(){
 						shadow.onclick = shadowClick;	// 动画结束后还原shadow点击事件
 					};
 				shadow.onclick = null;	// 动画开始后先清空shadow上的点击事件以免重复点击
-				modal.classList.add("closeAnimation");
 				document.body.addEventListener("animationend", closeHandler);	// IE9+
+				modal.classList.add("closeAnimation");
 			};
 		})(_dismissModal);
 	}
@@ -248,21 +248,6 @@ var Modal = (function(){
 				}
 			};
 		}
-	}
-
-	function _before(old, fn) {
-		return function() {
-			fn.apply(this, arguments);
-			return old.apply(this, arguments);
-		};
-	}
-
-	function _after(old, fn) {
-		return function() {
-			var ret = old.apply(this, arguments);
-			fn.apply(this, arguments);
-			return ret;
-		};
 	}
 
 	return _Modal;
