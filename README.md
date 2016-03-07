@@ -4,6 +4,7 @@
 
 # 使用方法
 
+## 常规使用
 首先在html文件中加载`css`和`js`文件：
 ```html
 <link rel="stylesheet" type="text/css" href="dist/css/KM-modal.min.css">
@@ -47,12 +48,22 @@ window.onload = function() {
 	modal.init();	// 初始化模态框
 };
 ```
+
+## 打开模态框
 除了写`html`按钮来打开模态框之外，还可以用javascript来打开模态框：
 ```javascript
 	modal.open(id);
 ```
 只需传入模态框也就是`.modal-wrap`类元素的`id`字符串进入`modal`实例的`open()`方法即可打开指定的模态框。
-**注意**，页面中只能有一个模态框打开，如果在有模态框是打开的情况下调用`open()`方法，将不会有任何反应，为了照顾不喜欢看文档的同学，我在代码中的这个情况下在`console`中输出了错误信息。
+
+## 关闭模态框
+除了点击阴影、点击叉叉和点击取消关闭模态框之外，还提供一种用JavaScript关闭模态框的方式：
+```javascript
+	modal.dismiss();
+```
+直接在`modal`对象上调用`dismiss()`方法即可关闭目前正处于打开状态的模态框。
+
+**注意**，页面中只能有一个模态框打开，如果在有模态框是打开的情况下调用`open()`方法，将不会有任何反应，为了照顾不喜欢看文档的同学，我在代码中的这个情况下在`console`中输出了错误信息。如果在没有模态框打开的情况下调用了`dismiss()`方法，也会输出相应信息。
 
 ## 支持的配置
 

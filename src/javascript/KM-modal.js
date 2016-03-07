@@ -62,6 +62,17 @@ var Modal = (function(){
 		}
 		_openModal(modal, shadow, content);
 	};
+	_Modal.prototype.dismiss = function() {
+		var shadow = _createShadow(),
+			i,
+			l = _modals.length;
+		for(i = l - 1; i >= 0; i--) {
+			if(_modals[i]._status === "open") {
+				return _dismissModal(_modals[i], shadow, _modals[i].querySelector(".modal-content"));
+			}
+		}
+		return console.log("没有打开的模态框");
+	};
 
 
 	var _createShadow = (function() {	// 返回一个shadow单例
